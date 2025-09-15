@@ -31,8 +31,8 @@ enum dilemma_keymap_layers {
 // Automatically enable sniping-mode on the pointer layer.
 // #define DILEMMA_AUTO_SNIPING_ON_LAYER LAYER_POINTER
 
-#define LOWER MO(LAYER_LOWER)
-#define RAISE MO(LAYER_RAISE)
+#define LOWER MO(TL_LOWR)
+#define RAISE MO(TL_UPPR)
 #define PT_Z LT(LAYER_POINTER, KC_Z)
 #define PT_SLSH LT(LAYER_POINTER, KC_SLSH)
 
@@ -64,7 +64,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
         MO(3),     KC_Z,   KC_X,    KC_C,    KC_V,    KC_B,       KC_N,    KC_M,    KC_COMM, KC_DOT,  PT_SLSH, MO(3),
   // ╰──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────╯
-                         KC_LALT, KC_BSPC,  KC_SPC,   LOWER,      RAISE,   KC_ENT,  KC_DEL,  KC_MUTE
+                         KC_LALT, KC_BSPC,   LOWER,  RAISE,    LOWER,   RAISE,  KC_DEL,  KC_MUTE
   //                    ╰───────────────────────────────────╯ ╰───────────────────────────────────╯
   ),
 
@@ -74,7 +74,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // ├──────────────────────────────────────────────────────┤         ├──────────────────────────────────────────────────────┤
        KC_NO,   KC_ESC,  KC_AT,   KC_HASH, KC_DLR,  KC_PERC,            KC_CIRC,    KC_AMPR, KC_ASTR, KC_UNDS,    KC_BSPC,    KC_NO,
   // ├──────────────────────────────────────────────────────┤         ├──────────────────────────────────────────────────────┤
-       KC_NO,   KC_TAB,  KC_MINS, KC_EQL,  S(KC_1), KC_SCLN,            KC_BSLS,    KC_MINS, KC_LPRN, KC_RPRN,    KC_ENT,     KC_PEQL,
+       KC_NO,   KC_TAB,  KC_MINS, KC_EQL,  S(KC_1), KC_SCLN,            KC_BSLS,    KC_GRV,  KC_LPRN, KC_RPRN,    KC_ENT,     KC_PEQL,
   // ├──────────────────────────────────────────────────────┤         ├──────────────────────────────────────────────────────┤
        KC_NO,   KC_COMM, KC_DOT,  KC_BSLS, KC_QUOT, KC_GRV,             S(KC_BSLS), KC_LBRC, KC_RBRC, S(KC_LBRC), S(KC_RBRC), KC_NO,
   // ╰──────────────────────────────────────────────────────┤         ├──────────────────────────────────────────────────────╯
