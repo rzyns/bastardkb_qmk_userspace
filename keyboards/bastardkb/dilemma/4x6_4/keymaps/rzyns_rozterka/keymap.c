@@ -33,6 +33,9 @@ enum dilemma_keymap_layers {
 
 #define LOWER LT(LAYER_LOWER, KC_SPC)
 #define RAISE LT(LAYER_RAISE, KC_SPC)
+#define ADJUST LT(LAYER_ADJUST, KC_SPC)
+#define POINTER MO(LAYER_POINTER)
+
 #define PT_Z LT(LAYER_POINTER, KC_Z)
 #define PT_SLSH LT(LAYER_POINTER, KC_SLSH)
 
@@ -48,39 +51,49 @@ enum dilemma_keymap_layers {
 #define HRL_D  MT(MOD_RALT, KC_D)
 #define HRL_F  MT(MOD_LGUI, KC_F)
 
+#define BRL_Z  MT(MOD_LCTL, KC_Z)
+#define BRL_X  MT(MOD_LSFT, KC_X)
+#define BRL_C  MT(MOD_RALT, KC_C)
+#define BRL_V  MT(MOD_LGUI, KC_V)
+
 #define HRR_J  MT(MOD_RGUI, KC_J)
 #define HRR_K  MT(MOD_RALT, KC_K)
 #define HRR_L  MT(MOD_RSFT, KC_L)
 #define HRR_SC MT(MOD_RCTL, KC_SCLN)
 
+#define BRR_M    MT(MOD_RGUI, KC_M)
+#define BRR_COMM MT(MOD_RALT, KC_COMM)
+#define BRR_DOT  MT(MOD_RSFT, KC_DOT)
+#define BRR_SLSH MT(MOD_RCTL, KC_SLSH)
+
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [LAYER_BASE] = LAYOUT(
   // ╭──────────────────────────────────────────────────────╮ ╭────────────────────────────────────────────────────────╮
-        KC_ESC,    KC_1,   KC_2,    KC_3,    KC_4,    KC_5,       KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_NO,
+        KC_ESC,    KC_1,   KC_2,    KC_3,    KC_4,    KC_5,       KC_6,    KC_7,  KC_8,     KC_9,    KC_0,     KC_NO,
   // ├──────────────────────────────────────────────────────┤ ├────────────────────────────────────────────────────────┤
-        KC_ESC,    KC_Q,   KC_W,    KC_E,    KC_R,    KC_T,       KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSLS,
+        KC_ESC,    KC_Q,   KC_W,    KC_E,    KC_R,    KC_T,       KC_Y,    KC_U,  KC_I,     KC_O,    KC_P,     KC_BSLS,
   // ├──────────────────────────────────────────────────────┤ ├────────────────────────────────────────────────────────┤
-        KC_NO,     HRL_A,  HRL_S,   HRL_D,   HRL_F,   KC_G,       KC_H,    HRR_J,   HRR_K,   HRR_L,   HRR_SC,  KC_QUOT,
+        POINTER,   KC_A,   KC_S,    KC_D,    KC_F,    KC_G,       KC_H,    KC_J,  KC_K,     KC_L,    KC_SCLN,  KC_QUOT,
   // ├──────────────────────────────────────────────────────┤ ├────────────────────────────────────────────────────────┤
-        MO(3),     KC_Z,   KC_X,    KC_C,    KC_V,    KC_B,       KC_N,    KC_M,    KC_COMM, KC_DOT,  PT_SLSH, MO(3),
+        POINTER,   BRL_Z,   BRL_X,  BRL_C,   BRL_V,   KC_B,       KC_N,    BRR_M, BRR_COMM, BRR_DOT, BRR_SLSH, POINTER,
   // ╰──────────────────────────────────────────────────────┤ ├────────────────────────────────────────────────────────╯
                          KC_LALT, KC_BSPC,   LOWER,  RAISE,    LOWER,   RAISE,  KC_DEL,  KC_MUTE
   //                    ╰───────────────────────────────────╯ ╰─────────────────────────────────╯
   ),
 
   [LAYER_LOWER] = LAYOUT(
-  // ╭───────────────────────────────────────────────────────────────╮ ╭──────────────────────────────────────────────────────────────╮
-       KC_TILD, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,            KC_CIRC,    KC_AMPR, KC_ASTR, KC_LPRN,    KC_RPRN,    KC_UNDS,
-  // ├───────────────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────────────┤
-       KC_NO,   KC_ESC,  KC_AT,   KC_HASH, KC_DLR,  KC_PERC,            KC_CIRC,    KC_AMPR, KC_ASTR, KC_UNDS,    KC_BSPC,    KC_NO,
-  // ├───────────────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────────────┤
-       KC_NO,   KC_TAB,  KC_MINS, KC_EQL,  S(KC_1), KC_SCLN,            KC_BSLS,    KC_GRV,  KC_LPRN, KC_RPRN,    KC_ENT,     KC_PEQL,
-  // ├───────────────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────────────┤
-       KC_NO,   KC_COMM, KC_DOT,  KC_BSLS, KC_QUOT, KC_GRV,             S(KC_BSLS), KC_LBRC, KC_RBRC, S(KC_LBRC), S(KC_RBRC), KC_NO,
-  // ╰───────────────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────────────╯
-                         KC_TRNS, KC_TRNS, KC_TRNS, MO(LAYER_ADJUST),   KC_TRNS, MO(LAYER_ADJUST), KC_TRNS, KC_TRNS
-  //                    ╰────────────────────────────────────────────╯ ╰───────────────────────────────────────────╯
+  // ╭──────────────────────────────────────────────────────╮ ╭──────────────────────────────────────────────────────────────╮
+       KC_TILD, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,   KC_CIRC,    KC_AMPR, KC_ASTR, KC_LPRN,    KC_RPRN,    KC_UNDS,
+  // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────────────┤
+       KC_NO,   KC_ESC,  KC_AT,   KC_HASH, KC_DLR,  KC_PERC,   KC_CIRC,    KC_AMPR, KC_ASTR, KC_UNDS,    KC_BSPC,    KC_NO,
+  // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────────────┤
+       KC_NO,   KC_TAB,  KC_MINS, KC_EQL,  S(KC_1), KC_SCLN,   KC_BSLS,    KC_GRV,  KC_LPRN, KC_RPRN,    KC_ENT,     KC_PEQL,
+  // ├──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────────────┤
+       KC_NO,   KC_COMM, KC_DOT,  KC_BSLS, KC_QUOT, KC_GRV,    S(KC_BSLS), KC_LBRC, KC_RBRC, S(KC_LBRC), S(KC_RBRC), KC_NO,
+  // ╰──────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────────────╯
+                         KC_TRNS, KC_TRNS, KC_TRNS, ADJUST,    KC_TRNS,    ADJUST,  KC_TRNS, KC_TRNS
+  //                    ╰───────────────────────────────────╯ ╰─────────────────────────────────────╯
   ),
 
   [LAYER_RAISE] = LAYOUT(
@@ -93,8 +106,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // ├──────────────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────┤
        KC_NO,  S(KC_COMM), S(KC_DOT),  S(KC_BSLS), KC_DQT,  KC_TILD,    KC_0,    KC_1,    KC_2,    KC_3,   S(KC_SLSH), KC_NO,
   // ╰──────────────────────────────────────────────────────────────┤ ├──────────────────────────────────────────────────────╯
-                       KC_TRNS, KC_TRNS, MO(LAYER_ADJUST), KC_TRNS,     MO(LAYER_ADJUST), KC_TRNS, KC_TRNS, KC_TRNS
-  //                    ╰───────────────────────────────────────────╯ ╰────────────────────────────────────────────╯
+                                  KC_TRNS, KC_TRNS, ADJUST, KC_TRNS,    ADJUST, KC_TRNS, KC_TRNS, KC_TRNS
+  //                             ╰──────────────────────────────────╯ ╰──────────────────────────────────╯
   ),
 
   [LAYER_ADJUST] = LAYOUT(
@@ -108,7 +121,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
        KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,  KC_TRNS,  KC_TRNS,    KC_HOME, KC_PGDN, KC_PGUP, KC_END,   KC_TRNS, KC_TRNS,
   // ╰────────────────────────────────────────────────────────┤ ├───────────────────────────────────────────────────────╯
                           KC_TRNS, KC_TRNS, KC_TRNS,  KC_TRNS,    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
-  //                    ╰─────────────────────────────────────╯ ╰───────────────────────────────────╯
+  //                     ╰────────────────────────────────────╯ ╰───────────────────────────────────╯
   ),
 
   [LAYER_POINTER] = LAYOUT(
