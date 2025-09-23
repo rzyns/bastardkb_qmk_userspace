@@ -24,4 +24,6 @@
 #define ENCODER_RESOLUTION 4
 
 // #define PERMISSIVE_HOLD
-// #define FLOW_TAP_TERM 150
+#define FLOW_TAP_TERM 75
+
+#define LUMBERJACK_COLOR

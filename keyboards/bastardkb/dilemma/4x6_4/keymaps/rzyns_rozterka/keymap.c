@@ -15,6 +15,8 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+#include <stdint.h>
+#include "action.h"
 #include "keycodes.h"
 #include "keymap_us.h"
 #include "modifiers.h"
@@ -78,7 +80,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // ├──────────────────────────────────────────────────────┤ ├────────────────────────────────────────────────────────┤
         POINTER,   KC_Z,   KC_X,    KC_C,    KC_V,    KC_B,       KC_N,  KC_M,   KC_COMM,  KC_DOT,  KC_SLSH,  POINTER,
   // ╰──────────────────────────────────────────────────────┤ ├────────────────────────────────────────────────────────╯
-                         KC_LALT, KC_BSPC,   LOWER,  RAISE,    LOWER,   RAISE,   KC_DEL, KC_MUTE
+                         KC_LALT, KC_LALT,   LOWER,  RAISE,    LOWER,   RAISE,   KC_DEL, KC_MUTE
   //                    ╰───────────────────────────────────╯ ╰─────────────────────────────────╯
   ),
 
@@ -178,3 +180,33 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
 //                              'L',     'L',     'L',     'L',        'R',     'R',     'R',     'R'
 //  //                     ╰───────────────────────────────────╯ ╰───────────────────────────────────╯
 // );
+
+bool is_flow_tap_key(uint16_t keycode) {
+    switch (keycode) {
+    case HRL_A:
+    case HRL_S:
+    case HRL_D:
+    case HRL_F:
+    case HRR_J:
+    case HRR_K:
+    case HRR_L:
+    case HRR_SC:
+        return true;
+    default:
+        return false;
+    }
+}
+
+uint16_t get_flow_tap_term(uint16_t keycode, keyrecord_t *record, uint16_t prev_keycode) {
+    if (is_flow_tap_key(prev_keycode)) {
+        if (is_flow_tap_key(keycode)) {
+            return FLOW_TAP_TERM;
+        }
+
+        if (keycode == KC_T) {
+            return FLOW_TAP_TERM;
+        }
+    }
+
+    return 0;
+}

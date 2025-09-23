@@ -1,0 +1,3 @@
+[submodule "modules/dave-thompson"]
+	path = modules/dave-thompson
+	url = https://github.com/dave-thompson/qmk-modules.git
